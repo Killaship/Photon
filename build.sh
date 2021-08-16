@@ -1,2 +1,3 @@
-nasm -f bin bootloader/boot1.asm -o boot1
-qemu-system-i386 -no-reboot boot1
+export DISPLAY=:0.0
+nasm -f bin bootloader/stage1.asm -o stage1
+qemu-system-i386 -no-reboot stage1
