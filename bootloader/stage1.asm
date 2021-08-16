@@ -57,6 +57,6 @@ boot2:
 halt:
 	cli
 	hlt
-hello: db "Photon Bootloader                                               Now Loading Kernel...",0
+hello: db "Photon Bootloader                                                               Now Loading Kernel...",0
 times 510 - ($-$$) db 0
 dw 0xaa55
