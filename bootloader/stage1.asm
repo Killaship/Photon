@@ -1,18 +1,63 @@
-bits 16 ; tell NASM this is 16 bit code
-org 0x7c00 ; tell NASM to start outputting stuff at offset 0x7c00
-boot:
-    mov si,hello ; point si register to hello label memory location
-    mov ah,0x0e ; 0x0e means 'Write Character in TTY mode'
-.loop:
-    lodsb
-    or al,al ; is al == 0 ?
-    jz halt  ; if (al == 0) jump to halt label
-    int 0x10 ; runs BIOS interrupt 0x10 - Video Services
-    jmp .loop
-halt:
-    cli ; clear interrupt flag
-    hlt ; halt execution
-hello: db "Hello world!",0
+bits 16
+org 0x7c00
 
-times 510 - ($-$$) db 0 ; pad remaining 510 bytes with zeroes
-dw 0xaa55 ; magic bootloader magic - marks this 512 byte sector bootable!
+boot:
+	mov ax, 0x2401
+	int 0x15
+	mov ax, 0x3
+	int 0x10
+	cli
+	lgdt [gdt_pointer]
+	mov eax, cr0
+	or eax,0x1
+	mov cr0, eax
+	jmp CODE_SEG:boot2
+gdt_start:
+	dq 0x0
+gdt_code:
+	dw 0xFFFF
+	dw 0x0
+	db 0x0
+	db 10011010b
+	db 11001111b
+	db 0x0
+gdt_data:
+	dw 0xFFFF
+	dw 0x0
+	db 0x0
+	db 10010010b
+	db 11001111b
+	db 0x0
+gdt_end:
+gdt_pointer:
+	dw gdt_end - gdt_start
+	dd gdt_start
+
+CODE_SEG equ gdt_code - gdt_start
+DATA_SEG equ gdt_data - gdt_start
+
+bits 32
+boot2:
+	mov ax, DATA_SEG
+	mov ds, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+	mov ss, ax
+	mov esi,hello
+	mov ebx,0xb8000
+.loop:
+	lodsb
+	or al,al
+	jz halt
+	or eax,0x0100
+	mov word [ebx], ax
+	add ebx,2
+	jmp .loop
+halt:
+	cli
+	hlt
+hello: db "Photon Bootloader",0x0D,0x0A,0x0A,"Now Loading Kernel...",0
+
+times 510 - ($-$$) db 0
+dw 0xaa55
