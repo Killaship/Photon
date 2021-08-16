@@ -50,14 +50,14 @@ boot2:
 	lodsb
 	or al,al
 	jz halt
-	or eax,0x0100
+	or eax,0x0F00
 	mov word [ebx], ax
 	add ebx,2
 	jmp .loop
 halt:
 	cli
 	hlt
-hello: db "Photon Bootloader",0x0D,0x0A,0x0A,"Now Loading Kernel...",0
+hello: db "Photon Bootloader",0x0D,0x0A,"Now Loading Kernel...",0
 
 times 510 - ($-$$) db 0
 dw 0xaa55
