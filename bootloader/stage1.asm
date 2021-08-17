@@ -73,13 +73,13 @@ boot2:
 	jmp .loop
 halt:
 	mov esp,kernel_stack_top
-	extern kmain
-	call kmain
+	extern start
+	call start
 	cli
 	hlt
 
 section .bss
 align 4
 kernel_stack_bottom: equ $
-	resb 16384 ; 16 KB
+	resb 2048 ; 2 KB
 kernel_stack_top:
