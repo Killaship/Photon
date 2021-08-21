@@ -17,5 +17,5 @@ jmp $ ; Jump to the current address ( i.e. forever ).
 ; Padding and magic BIOS number.
 ;
 times 510 -( $ - $$ ) db 0 ; Pad the boot sector out with zeros
-dw 0 xaa55 ; Last two bytes form the magic number ,
+dw 0xaa55 ; Last two bytes form the magic number ,
 ; so BIOS knows we are a boot sector.
