@@ -1,5 +1,5 @@
-[bits 16]    ; use 16 bits
-[org 0x7c00] ; sets the start address
+bits 16    ; use 16 bits
+org 0x7c00 ; sets the start address
 
 init: 
   mov si, msg  ; loads the address of "msg" into SI register
