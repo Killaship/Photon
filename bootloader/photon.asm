@@ -18,7 +18,7 @@ jmp $
 
 %include "disk.asm"
 %include "gdt.asm"
-%include "switch-to-32bit.asm"
+%include "32bit.asm"
 
 [bits 16]
 load_kernel:
