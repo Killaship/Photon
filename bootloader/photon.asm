@@ -16,7 +16,7 @@ call switch_to_32bit
 
 jmp $
 
-%include "disc.asm"
+%include "disk.asm"
 %include "gdt.asm"
 %include "32bit.asm"
 
