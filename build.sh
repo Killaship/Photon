@@ -1,6 +1,5 @@
 git pull
 
 nasm -f bin bootloader/mbr.asm -o mbr.bin
-nasm -f bin bootloader/stage2.asm -o stage2.bin
-cat mbr.bin stage2.bin > os.bin
+g++ -m64 kmain.cpp boot4.o -o kernel.bin -nostdlib -ffreestanding -std=c++11 -mno-red-zone -fno-exceptions -nostdlib -fno-rtti -Wall -Wextra -Werror -T linker.ld
 qemu-system-i386 -fda os.bin -curses
