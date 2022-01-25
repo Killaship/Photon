@@ -50,13 +50,14 @@ boot2:
 	lodsb
 	or al,al
 	jz halt
-	or eax,0x0100
+	or eax,0x0800
+	
 	mov word [ebx], ax
 	add ebx,2
 	jmp .loop
 halt:
 	cli
 	hlt
-hello: db "Hello world!",0
+hello: db "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",0
 
 times 1024 - ($-$$) db 0
