@@ -6,13 +6,13 @@ extern keyboard_handler_main
 global keyboard_handler
 global loadprgm
 
-keyboard_handler:                 
-	call    keyboard_handler_main
-	iretd
+
 
 loadprgm:
 	jmp $ ; do later
-  
+keyboard_handler:                 
+	call    keyboard_handler_main
+	iretd
 
 mov esp, stack_space    ; set stack pointer	
 
