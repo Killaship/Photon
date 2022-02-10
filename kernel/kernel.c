@@ -3,6 +3,10 @@
 * License: GPL version 2 or higher http://www.gnu.org/licenses/gpl.html
 */
 
+void dummy_test_entrypoint() {
+}
+
+
 #include <stdint.h>
 #include <stddef.h>
 #include "libk.h"
