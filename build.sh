@@ -11,4 +11,4 @@ ld -m elf_i386 -o kernel.bin -Ttext 0x1000 kasm.o kc.o --oformat binary
 
 cat mbr.bin kernel.bin > os.bin
 
-qemu-system-i386 -fda os.bin -curses -rtc base=localtime
+#qemu-system-i386 -fda os.bin -curses -rtc base=localtime
