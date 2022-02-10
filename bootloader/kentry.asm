@@ -1,5 +1,5 @@
 bits 32
-
+org 0x1000
 extern kmain 
 extern keyboard_handler_main
 
@@ -11,7 +11,6 @@ global loadprgm
 
 
 mov esp, stack_space    ; set stack pointer	
-
 call kmain ; calls the kernel main function
 jmp $
 
