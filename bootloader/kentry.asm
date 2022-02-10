@@ -13,7 +13,6 @@ keyboard_handler:
 loadprgm:
 	jmp $ ; do later
   
-org 0x1000
 
 mov esp, stack_space    ; set stack pointer	
 
