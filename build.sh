@@ -5,7 +5,7 @@ nasm -f bin mbr.asm -o mbr.bin
 nasm -felf kentry.asm -o kasm.o
 cd -
 
-gcc -Wall -Wextra -fno-stack-protector -m32 -c kernel/kernel.c -o kc.o -ffreestanding -fno-PIC
+gcc -ffreestanding -fno-PIC -Wall -Wextra -fno-stack-protector -m32 -c kernel/kernel.c -o kc.o 
 
 ld -no-PIE -m elf_i386 -o kernel.bin -Ttext 0x1000 bootloader/kasm.o kc.o --oformat binary
 
