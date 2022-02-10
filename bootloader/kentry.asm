@@ -10,7 +10,7 @@ global loadprgm
 
 
 
-mov esp, stack_space    ; set stack pointer	
+
 call kmain ; calls the kernel main function
 jmp $
 
@@ -19,7 +19,3 @@ loadprgm:
 keyboard_handler:                 
 	call    keyboard_handler_main
 	iretd
-
-section .bss
-resb 8192 ; 8KB for stack
-stack_space:
