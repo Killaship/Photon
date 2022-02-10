@@ -14,6 +14,12 @@ loadprgm:
 	jmp $ ; do later
   
 org 0x1000
-call kmain ; calls the kernel main function
 
+mov esp, stack_space    ; set stack pointer	
+
+call kmain ; calls the kernel main function
 jmp $
+
+section .bss
+resb 8192 ; 8KB for stack
+stack_space:
