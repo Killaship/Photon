@@ -1,7 +1,9 @@
 git pull
 
-nasm -f bin bootloader/mbr.asm -o mbr.bin
-nasm -felf bootloader/kentry.asm kasm.o
+cd bootloader
+nasm -f bin mbr.asm -o mbr.bin
+nasm -felf kentry.asm -o kasm.o
+cd -
 
 gcc -Wall -Wextra -fno-stack-protector -m32 -c kernel/kernel.c -o kc.o -ffreestanding
 
