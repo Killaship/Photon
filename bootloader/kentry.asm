@@ -13,6 +13,7 @@ keyboard_handler:
 loadprgm:
 	jmp $ ; do later
   
-  
+org 0x1000
 call kmain ; calls the kernel main function
+
 jmp $
