@@ -1,5 +1,4 @@
 bits 32
-org 0x1000
 extern kmain 
 extern keyboard_handler_main
 
